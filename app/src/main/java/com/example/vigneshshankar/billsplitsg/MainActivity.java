@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_main);
-        RecyclerView rv = (RecyclerView)findViewById(R.id.rv);
+        RecyclerView rv = (RecyclerView)findViewById(R.id.add_button);
         rv.setHasFixedSize(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_button);
