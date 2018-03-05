@@ -22,7 +22,7 @@
 
     <include
         layout="@layout/content_main"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         tools:layout_editor_absoluteX="0dp"
         android:layout_height="match_parent" />
 
