@@ -16,11 +16,24 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
-    private RecyclerView mRecyclerView;
+    // RecyclerView stuff
+    private RecyclerView recList;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-
+    private LinearLayoutManager llm; // extends RecyclerView.LayoutManager
+    
+    // Buttons
     public Button add_button;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my);
+        RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
+        recList.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recList.setLayoutManager(llm);
+}
 
     public void init(){
         add_button=(Button)findViewById(R.id.add_button);
@@ -34,9 +47,6 @@ public class MainActivity extends Activity {
             }
         });
     }
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
