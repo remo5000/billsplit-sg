@@ -1,12 +1,9 @@
 package com.example.vigneshshankar.billsplitsg;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,28 +12,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 public class MainActivity extends Activity {
-    // RecyclerView stuff
-    private RecyclerView recList;
-    private RecyclerView.Adapter mAdapter;
-    private LinearLayoutManager llm; // extends RecyclerView.LayoutManager
-    
-    // Buttons
-    public Button add_button;
+    private RecyclerView mRecyclerView;
+    private RecyclerViewAdapter mAdapter;
+    private LinearLayoutManager mLayoutManager;
+    private ArrayList arrayList;
+    public FloatingActionButton add_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my);
-        RecyclerView recList = (RecyclerView) findViewById(R.id.cardList);
-        recList.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
-}
+        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
+
+        arrayList = new ArrayList();
+        mRecyclerView = findViewById(R.id.rv);
+        mAdapter = new RecyclerViewAdapter(arrayList, this);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        init();
+    }
 
     public void init(){
-        add_button=(Button)findViewById(R.id.add_button);
+        add_button=findViewById(R.id.add_button);
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,6 +49,13 @@ public class MainActivity extends Activity {
                 startActivity(credentials);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
